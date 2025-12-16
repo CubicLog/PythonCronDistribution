@@ -1,0 +1,25 @@
+services:
+  redis:
+    image: redis:8.4-rc1
+    command: redis-server --appendonly yes
+    ports:
+      - "6379"
+    volumes:
+      - redis-data:/data
+  
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
+    driver: local
