@@ -1,9 +1,8 @@
 from __future__ import annotations
-import sys, os, asyncio, time
+import sys, os, asyncio
 from pathlib import Path
 import importlib.util
 import logging
-from redis.exceptions import RedisError
 from modules import get_registry
 from core.registry import register_tasks
 from core.presence import Presence

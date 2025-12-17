@@ -3,7 +3,6 @@ from __future__ import annotations
 import asyncio, time, inspect
 from dataclasses import dataclass
 from typing import Dict, Optional
-from redis.exceptions import RedisError
 
 from modules import Task, Priority, Overlap, Backlog
 from .state import TaskState, RunResult

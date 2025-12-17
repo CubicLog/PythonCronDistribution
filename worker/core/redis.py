@@ -1,5 +1,4 @@
 import redis.asyncio as redis
-from redis.exceptions import RedisError
 import os
 
 redis_conn: redis.Redis | None = None

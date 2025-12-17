@@ -1,9 +1,9 @@
-import os, json, hashlib, pymongo
+import json, hashlib, pymongo
 from datetime import datetime, timezone
 from typing import Any, Iterable, Optional, List, Dict, Set
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
-from pymongo.errors import WriteError, DuplicateKeyError, BulkWriteError
-from pymongo import InsertOne, ReplaceOne
+from pymongo.errors import DuplicateKeyError, BulkWriteError
+from pymongo import ReplaceOne
 from bson import encode as bson_encode
 
 def utc(ts: datetime) -> datetime:
