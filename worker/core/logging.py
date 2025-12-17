@@ -18,7 +18,7 @@ def setup_logging(level: int = logging.INFO) -> None:
     if not root.handlers:
         h = logging.StreamHandler()
         fmt = logging.Formatter(
-            "%(asctime)s [%(levelname)s] [task=%(task_id)s] %(name)s: %(message)s"
+            "%(asctime)s [%(levelname)s] [task=%(task_id)s]: %(message)s"
         )
         h.setFormatter(fmt)
         root.addHandler(h)
