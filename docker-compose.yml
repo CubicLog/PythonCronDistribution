@@ -7,11 +7,25 @@ services:
     volumes:
       - redis-data:/data
   
+  mongo:
+    image: mongo:7
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-dev}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-devpass}
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+    mem_limit: 8gb
+    mem_reservation: 6gb
+  
   worker:
     build:
       context: .
       dockerfile: Dockerfile
     environment:
+      MONGO_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME:-dev}:${MONGO_INITDB_ROOT_PASSWORD:-devpass}@mongo:27017/OSINT?authSource=admin
       REDIS_URL: redis://redis:6379/0
     env_file:
       - .env
@@ -19,7 +33,9 @@ services:
       - .:/app
     depends_on:
       - redis
+      - mongo
 
 volumes:
   redis-data:
     driver: local
+  mongo-data:

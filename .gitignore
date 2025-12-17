@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+# local scripts
+*.ps1
+*.bat
+*.sh
+
 # Distribution / packaging
 .Python
 build/
